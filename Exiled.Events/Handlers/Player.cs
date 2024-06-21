@@ -179,6 +179,11 @@ namespace Exiled.Events.Handlers
         public static Event<ChangingRoleEventArgs> ChangingRole { get; set; } = new();
 
         /// <summary>
+        /// Invoked before a <see cref="API.Features.Player"/> changes their AHP.
+        /// </summary>
+        public static Event<ChangingAhpEventArgs> ChangingAhp { get; set; } = new();
+
+        /// <summary>
         /// Invoked afer throwing an <see cref="API.Features.Items.Throwable"/>.
         /// </summary>
         public static Event<ThrownProjectileEventArgs> ThrownProjectile { get; set; } = new();
@@ -675,6 +680,12 @@ namespace Exiled.Events.Handlers
         /// <param name="ev">The <see cref="ChangingRoleEventArgs"/> instance.</param>
         /// <remarks>If <see cref="ChangingRoleEventArgs.IsAllowed"/> is set to <see langword="false"/> when Escape is <see langword="true"/>, tickets will still be given to the escapee's team even though they will 'fail' to escape. Use <see cref="Escaping"/> to block escapes instead.</remarks>
         public static void OnChangingRole(ChangingRoleEventArgs ev) => ChangingRole.InvokeSafely(ev);
+
+        /// <summary>
+        /// Called before a <see cref="API.Features.Player"/> changes their AHP.
+        /// </summary>
+        /// <param name="ev">The <see cref="ChangingAhpEventArgs"/> instance.</param>
+        public static void OnChangingAhp(ChangingAhpEventArgs ev) => ChangingAhp.InvokeSafely(ev);
 
         /// <summary>
         /// Called before throwing a grenade.
